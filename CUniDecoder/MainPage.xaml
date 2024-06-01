@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:plain="clr-namespace:Plainer.Maui.Controls;assembly=Plainer.Maui"
+             xmlns:vm="clr-namespace:CUniDecoder.ViewModels"
+             xmlns:controls="clr-namespace:CUniDecoder.Controls"
+             xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+             x:Class="CUniDecoder.MainPage"
+             x:DataType="vm:MainViewModel"
+             Title="CUniDecoder">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="15" Padding="20">
+            <Border StyleClass="InputContainer" >
+                <Grid>
+                    <plain:EditorView Text="{Binding InputText}"/>
+                    <HorizontalStackLayout Spacing="2" HorizontalOptions="End" VerticalOptions="End" Padding="10">
+                        <controls:CopyButton TextToCopy="{Binding InputText}"
+                         HorizontalOptions="End"
+                         VerticalOptions="End"/>
+                        <uranium:StatefulContentView>
+                            <Image Source="{FontImageSource Glyph={x:Static uranium:MaterialRegular.Volume_up},FontFamily=MaterialRegular, Color={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Black}}}">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ReadTheInputCommand}"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </uranium:StatefulContentView>
+                    </HorizontalStackLayout>
+                </Grid>
+            </Border>
+
+
+            <Border StyleClass="OutputContainer">
+                <Grid>
+                    <plain:EditorView Text="{Binding OutputText}" IsReadOnly="True"/>
+                    <HorizontalStackLayout Spacing="2" HorizontalOptions="End" VerticalOptions="End" Padding="10">
+                        <controls:CopyButton TextToCopy="{Binding OutputText}"
+                                             HorizontalOptions="End"
+                                             VerticalOptions="End"/>
+                        <uranium:StatefulContentView>
+                            <Image Source="{FontImageSource Glyph={x:Static uranium:MaterialRegular.Volume_up},FontFamily=MaterialRegular, Color={AppThemeBinding Dark={StaticResource White}, Light={StaticResource Black}}}">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding ReadTheOutputCommand}"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </uranium:StatefulContentView>
+                    </HorizontalStackLayout>
+
+                </Grid>
+
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
